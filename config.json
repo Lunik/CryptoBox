@@ -1,0 +1,13 @@
+{
+	"server": {
+		"hostname": "cloud.hack",
+		"certs": {
+			"privatekey": "./ssl/server.key",
+			"certificate": "./ssl/server.crt"
+		},
+		"port": 8443
+	},
+	"files": {
+		"mountpoint": "/tmp"
+	}
+}

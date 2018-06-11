@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>Cloud Hack</title>
+</head>
+<body>
+	<h1>Vault managment</h1>
+	<form method="post" action="/vault/unlock">
+		<label>Password :</label>
+		<input type="password" name="password" id="pass-vault">
+		<input type="submit" value="unlock">
+	</form>
+	<form method="post" action="/vault/lock">
+		<input type="submit" value="lock">
+	</form>
+	<h1>Login</h1>
+	<form method="post" action="/login">
+		<label>Password :</label>
+		<input type="password" name="password" id="pass-login">
+		<input type="submit" value="login">
+	</form>
+	<h1><a href="/files">FILES</a></h1>
+	<h1>Upload File</h1>
+	<form ref='uploadForm'
+      id='uploadForm'
+			method="post" action="/upload" encType="multipart/form-data">
+		<label>File :</label>
+		<input type="file" name="file">
+		<input type="submit" value="upload">
+	</form>
+</body>
+</html>
