@@ -16,24 +16,24 @@ Fournir une solution permettant à des utilisateurs qui se connaissent de partag
 | Support | `Clef USB` |
 
 ### Système d'exploitation
-Nous avons décidé d'utiliser la distribution `Alpine Linux`. Elle à l'avantage d'être légère et adapté au systèmes embarquées. Et offre toutes les fonctionnalités d'un OS classique comme `CentOS` ou `Debian`
+Nous avons décidé d'utiliser la distribution `Alpine Linux`. Elle a l'avantage d'être légère et adaptée au systèmes embarquées. Elle offre toutes les fonctionnalités d'un OS classique comme `CentOS` ou `Debian`.
 
 ### Serveur Web
-Nous avons utiliser un serveur écrit en `NodeJS`. Il nous permet d'avoir une grande flexibilité pour une faible empreinte mémoire. Le code peut être compilé en binaire statique ce qui facilite son installation sur notre système.
+Nous avons utilisé un serveur écrit en `NodeJS`. Il nous permet d'avoir une grande flexibilité pour une faible empreinte mémoire. Le code peut être compilé en binaire statique ce qui facilite son installation sur notre système.
 Nous utilisons un certificat SSL x509 afin de chiffrer les échanges entre les utilisateurs et la CryptoBox.
 
 ### Serveur DHCP et DNS
 Afin de simplifier l'utilisation de notre CrytoBox, nous avons mis en place un serveur DNS pour simplifier l'URL de l'interface web. Nous mettrons aussi en place un serveur DHCP pour configurer automatiquement les adresses IP des clients et le serveur DNS.
 
 ### Chiffrement
-Afin de protéger les données qui sont téléchargées sur la clef, nous allons déposer dans une partition chiffré avec `LUKS`
+Afin de protéger les données qui sont téléchargées sur la clef, nous allons les déposer dans une partition chiffrée avec `LUKS`.
 
 ## Fonctionnements
 
 Il suffit de brancher la clé USB sur un PC et de booter sur la clef.
 Tous les services démarrent immédiatement sans actions manuelles. L'écran de l'ordinateur affiche alors l'URL du service web ainsi que le mot de passe pour accéder à l'interface.
 
-Les utilisateurs voulant utiliser la CrytoBox devront se connecter à l'aide de câbles ethernet. Ils devront récupérer une adresse IP via dhcp.
+Les utilisateurs voulant utiliser la CrytoBox devront se connecter à l'aide de câbles ethernet. Ils devront récupérer une adresse IP via DHCP.
 Il faudra vérifier que le DNS à bien été configuré via le DHCP.
 
 L'interface sera accessible sous l'adresse `https//cloud.hack/`.
@@ -65,7 +65,7 @@ Identifiant de disque : 0xd8fe63fd
 - Créer une partition avec `n`, une partition primaire `p`, de numéro `1`, premier secteur `2048`, dernier secteur `+8G`
 - Ajouter le flag bootable sur cette dernière `a`, puis `1`
 
-Avec la touche `p`, il devrait apparaitre les partitions tel que:
+Avec la touche `p`, il devrait apparaitre les partitions telles que:
 ```sh
 Commande (m pour l'aide) : p
 
@@ -116,7 +116,7 @@ where to store config: none
 cache directory: /tmp/cache
 ```
 
-Next update package index with `apk`:
+Mettre à jour les `apk`:
 ```sh
 $ apk update
 ```
@@ -170,7 +170,7 @@ $ losetup -d /dev/loop0
 Sous réseau : `192.168.42.0/24`
 
 ##### Configuration des interfaces
-Editer le fichiers de configurations des interfaces `/etc/network/interfaces` eth0 étant l'interface exposé aux clients de la cryptobox. Pour fixer l'adresse IP de la crypto box.
+Editer le fichier de configurations des interfaces `/etc/network/interfaces` eth0 étant l'interface exposée aux clients de la cryptobox. Pour fixer l'adresse IP de la crypto box.
 ```
 auto lo
 iface lo inet loopback
@@ -211,7 +211,7 @@ $ rc-update add dnsmasq boot
 
 #### Configuration Système
 ##### Génération de certificats SSL x509
-Nous utiliserons un simple certificat autosigné. Il n'est pas nécessaire qu'il soit généré sur la cryptobox, elle peut être importé plus tard.
+Nous utiliserons un simple certificat autosigné. Il n'est pas nécessaire qu'il soit généré sur la cryptobox, il peut être importé plus tard.
 
 Création d'une clef privée
 ```
@@ -247,7 +247,7 @@ $ openssl req -x509 -new -nodes \
 ```
 
 Nous déposerons le certificat et la clef dans le repertoire `ssl` de notre application.
-Il est possible de les mettre ailleurs, dans ce cas il faudra changer le chemin par défaut dans le fichier `config.json` de l'application
+Il est possible de les mettre ailleurs, dans ce cas il faudra changer le chemin par défaut dans le fichier `config.json` de l'application.
 
 ##### Installation et configuration de l'application web
 Ce dépôt contient l'ensemble des fichiers nécessaires au fonctionnement de l'application web.
